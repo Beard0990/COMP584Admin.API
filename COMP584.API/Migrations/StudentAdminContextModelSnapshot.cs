@@ -16,104 +16,104 @@ namespace COMP584.API.Migrations
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
-                .HasAnnotation("ProductVersion", "5.0.13")
+                .HasAnnotation("ProductVersion", "5.0.9")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("COMP584.API.DataModels.Address", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
+            modelBuilder.Entity("StudentAdminPortal.API.DataModels.Address", b =>
+            {
+                b.Property<Guid>("Id")
+                    .ValueGeneratedOnAdd()
+                    .HasColumnType("uniqueidentifier");
 
-                    b.Property<string>("PhysicalAddress")
-                        .HasColumnType("nvarchar(max)");
+                b.Property<string>("PhysicalAddress")
+                    .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("PostalAddress")
-                        .HasColumnType("nvarchar(max)");
+                b.Property<string>("PostalAddress")
+                    .HasColumnType("nvarchar(max)");
 
-                    b.Property<Guid>("StudentId")
-                        .HasColumnType("uniqueidentifier");
+                b.Property<Guid>("StudentId")
+                    .HasColumnType("uniqueidentifier");
 
-                    b.HasKey("Id");
+                b.HasKey("Id");
 
-                    b.HasIndex("StudentId")
-                        .IsUnique();
+                b.HasIndex("StudentId")
+                    .IsUnique();
 
-                    b.ToTable("Address");
-                });
+                b.ToTable("Address");
+            });
 
-            modelBuilder.Entity("COMP584.API.DataModels.Gender", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
+            modelBuilder.Entity("StudentAdminPortal.API.DataModels.Gender", b =>
+            {
+                b.Property<Guid>("Id")
+                    .ValueGeneratedOnAdd()
+                    .HasColumnType("uniqueidentifier");
 
-                    b.Property<string>("Description")
-                        .HasColumnType("nvarchar(max)");
+                b.Property<string>("Description")
+                    .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("Id");
+                b.HasKey("Id");
 
-                    b.ToTable("Gender");
-                });
+                b.ToTable("Gender");
+            });
 
-            modelBuilder.Entity("COMP584.API.DataModels.Student", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
+            modelBuilder.Entity("StudentAdminPortal.API.DataModels.Student", b =>
+            {
+                b.Property<Guid>("Id")
+                    .ValueGeneratedOnAdd()
+                    .HasColumnType("uniqueidentifier");
 
-                    b.Property<DateTime>("DateOfBirth")
-                        .HasColumnType("datetime2");
+                b.Property<DateTime>("DateOfBirth")
+                    .HasColumnType("datetime2");
 
-                    b.Property<string>("Email")
-                        .HasColumnType("nvarchar(max)");
+                b.Property<string>("Email")
+                    .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("FirstName")
-                        .HasColumnType("nvarchar(max)");
+                b.Property<string>("FirstName")
+                    .HasColumnType("nvarchar(max)");
 
-                    b.Property<Guid>("GenderId")
-                        .HasColumnType("uniqueidentifier");
+                b.Property<Guid>("GenderId")
+                    .HasColumnType("uniqueidentifier");
 
-                    b.Property<string>("LastName")
-                        .HasColumnType("nvarchar(max)");
+                b.Property<string>("LastName")
+                    .HasColumnType("nvarchar(max)");
 
-                    b.Property<long>("Mobile")
-                        .HasColumnType("bigint");
+                b.Property<long>("Mobile")
+                    .HasColumnType("bigint");
 
-                    b.Property<string>("ProfileImageUrl")
-                        .HasColumnType("nvarchar(max)");
+                b.Property<string>("ProfileImageUrl")
+                    .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("Id");
+                b.HasKey("Id");
 
-                    b.HasIndex("GenderId");
+                b.HasIndex("GenderId");
 
-                    b.ToTable("Student");
-                });
+                b.ToTable("Student");
+            });
 
-            modelBuilder.Entity("COMP584.API.DataModels.Address", b =>
-                {
-                    b.HasOne("COMP584.API.DataModels.Student", null)
-                        .WithOne("Address")
-                        .HasForeignKey("COMP584.API.DataModels.Address", "StudentId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
+            modelBuilder.Entity("StudentAdminPortal.API.DataModels.Address", b =>
+            {
+                b.HasOne("StudentAdminPortal.API.DataModels.Student", null)
+                    .WithOne("Address")
+                    .HasForeignKey("StudentAdminPortal.API.DataModels.Address", "StudentId")
+                    .OnDelete(DeleteBehavior.Cascade)
+                    .IsRequired();
+            });
 
-            modelBuilder.Entity("COMP584.API.DataModels.Student", b =>
-                {
-                    b.HasOne("COMP584.API.DataModels.Gender", "Gender")
-                        .WithMany()
-                        .HasForeignKey("GenderId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+            modelBuilder.Entity("StudentAdminPortal.API.DataModels.Student", b =>
+            {
+                b.HasOne("StudentAdminPortal.API.DataModels.Gender", "Gender")
+                    .WithMany()
+                    .HasForeignKey("GenderId")
+                    .OnDelete(DeleteBehavior.Cascade)
+                    .IsRequired();
 
-                    b.Navigation("Gender");
-                });
+                b.Navigation("Gender");
+            });
 
-            modelBuilder.Entity("COMP584.API.DataModels.Student", b =>
-                {
-                    b.Navigation("Address");
-                });
+            modelBuilder.Entity("StudentAdminPortal.API.DataModels.Student", b =>
+            {
+                b.Navigation("Address");
+            });
 #pragma warning restore 612, 618
         }
     }
